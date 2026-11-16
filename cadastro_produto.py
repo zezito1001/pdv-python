@@ -1,37 +1,26 @@
 def cadastro_produto():
-
     produto = {}
-    codigo = 1
+    id = 1
 
     while True:
-            p = input("Deseja Cadastrar algum Produto?" ).strip().lower()
-
+            p = input("Deseja Cadastrar algum Produto (s/n)? " ).strip().lower()
             if p.strip().lower() in ("sim"):
                 while True:
- 
-                    nome = input("Digite o nome do produto, que você deseja Adicionar: ")
-
+                    nome = input("Digite o nome do produto, que você deseja Adicionar: ").capitalize()
                     valor = float(input("Digite o valor do produto: "))
-
-                    estoque = int(input("Digite a quantidade que tem no estoque desse produto" ))
-
-                    produto[codigo] = {"nome": nome, "valor": valor, "estoque": estoque }
-
-                    codigo += 1
+                    estoque = int(input("Digite a quantidade que tem no estoque desse produto: " ))
+                    produto[f"{id:03d}"] = {"nome": nome, "valor": valor, "estoque": estoque }
+                    id += 1
 
                     while True: 
-
-                        add = input("Deseja Adicionar Mais algum Poduto ? ").strip().lower()
-                        if add in ("sim", "s", "não", "nao"):
-                         break
+                        add = input("Deseja adicionar mais algum produto (s/n)? ").strip().lower()
+                        if add.strip().lower() in ("sim", "s", "não", "nao", "n"):
+                            break
                         print("Eu não entendi, poderia digitar novamente ? ")
-
-                    if add in ("não", "nao"):
+                    if add in ("não", "nao", "n"):
                         print("Saindo...")
                         break
-
                 break
-
             elif p in ("não", "nao"):
                 print("Saindo...")
                 break
@@ -40,17 +29,15 @@ def cadastro_produto():
     return produto 
 
 def mostrar_produto(produto):
+    print("<<<< PRODUTOS CADASTRADOS >>>>")
+    print("=" * 20)
+    for id, dados in produto.items():
+        print(f"id do Produto: {id}")
+        print(f"Nome: {dados['nome']}")
+        print(f"Valor: R$ {dados['valor']:.2f}")
+        print(f"Estoque: {dados['estoque']}")
+        print("=" * 20)
 
-    for codigo, dados in produto.items():
-        print("<<<< PRODUTOS CADASTRADOS >>>>")
- 
-        print(f"codigo do Produto {codigo}")
-
-        print(f"Nome {dados['nome']}")
-
-        print(f"Valor {dados['valor']:.2f} Reais")
-
-        print(f"Estoque {dados['estoque']}")
-
-produto = cadastro_produto()
-mostrar_produto(produto)
+if __name__ == "__main__":
+    produto = cadastro_produto()
+    mostrar_produto(produto)
