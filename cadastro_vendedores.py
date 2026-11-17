@@ -25,7 +25,7 @@ def cadastro_de_vendedores():
             print("Saindo...")
             break
         else:
-            print("Eu não entendi, poderia informar novamente ? ")
+            print("Eu não entendi, poderia informar novamente?")
     return vendedores
 
 def mostrar_vendedores(vendedores):
