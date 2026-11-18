@@ -8,7 +8,8 @@ def cadastro_cliente():
 
                   while True:
                         nome = input("Informe o nome do cliente: ").capitalize()
-                        idade = int(input("Informe a idade do cliente: "))
+                        data_nascimento = int(input("Informeo ano de nascimento: "))
+                        idade = 2026 - data_nascimento
                         cpf = input("Informe o CPF do cliente: ")
                         cliente[f"CL{id:03d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf}
                         id += 1
