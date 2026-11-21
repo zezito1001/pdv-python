@@ -9,7 +9,7 @@ def cadastro_de_vendedores():
                 nome = input("Informe o nome do vendedor: ").capitalize()
                 idade = int(input("Informe a idade do vendedor: "))
                 cpf = input("Informe o CPF do vendedor: ")
-                vendedores[f"VD{id:03d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf}
+                vendedores[f"{id:03d}"] = {"nome": nome, "idade": idade, "CPF": cpf}
                 id += 1
 
                 while True:
@@ -31,11 +31,10 @@ def cadastro_de_vendedores():
 def mostrar_vendedores(vendedores):
     print("=" * 20)
     for id, dados in vendedores.items():
-        print(f"Nome: {dados['Nome']}")
-        print(f"Idade: {dados['Idade']}")
+        print(f"Nome: {dados['nome']}")
+        print(f"Idade: {dados['idade']}")
         print(f"CPF: {dados['CPF']}")
-        print(f"ID: {id}")
-        print("=" * 20)
+        print(f"ID: VD{id}")
 if __name__ == "__main__":
     vendedores = cadastro_de_vendedores()
     mostrar_vendedores(vendedores)

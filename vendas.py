@@ -1,10 +1,15 @@
 from datetime import datetime
+from time import sleep
 
 
 def escolher_pessoa(cadastros, tipo):
     print(f"\nSelecione um {tipo}:")
-    for codigo, pessoa in cadastros.items():
-        print(f"{codigo} - {pessoa['Nome']}")
+    if tipo == "cliente":
+        for codigo, pessoa in cadastros.items():
+            print(f"CL{codigo} - {pessoa['nome']}")
+    else:
+        for codigo, pessoa in cadastros.items():
+            print(f"VD{codigo} - {pessoa['nome']}")
 
     codigo_escolhido = input(f"Código do {tipo}: ").strip().upper()
 
@@ -17,6 +22,7 @@ def escolher_pessoa(cadastros, tipo):
 def realizar_venda(clientes, vendedores, produtos, vendas):
     if not clientes or not vendedores or not produtos:
         print("Cadastre pelo menos um cliente, um vendedor e um produto.")
+        sleep(0.8)
         return
 
     codigo_cliente = escolher_pessoa(clientes, "cliente")
@@ -33,7 +39,7 @@ def realizar_venda(clientes, vendedores, produtos, vendas):
         print("\n========== PRODUTOS ==========")
         for codigo, produto in produtos.items():
             print(
-                f"{codigo} - {produto['nome']} | "
+                f"PR{codigo} - {produto['nome']} | "
                 f"R$ {produto['valor']:.2f} | "
                 f"Estoque: {produto['estoque']}"
             )
@@ -49,6 +55,7 @@ def realizar_venda(clientes, vendedores, produtos, vendas):
 
         if codigo_produto not in produtos:
             print("Produto não encontrado.")
+            sleep(0.8)
             continue
 
         quantidade_digitada = input("Quantidade: ").strip()
@@ -74,6 +81,7 @@ def realizar_venda(clientes, vendedores, produtos, vendas):
 
         if quantidade > estoque_disponivel:
             print(f"Estoque insuficiente. Disponível: {estoque_disponivel}.")
+            sleep(0.8)
             continue
 
         if codigo_produto in carrinho:
@@ -85,10 +93,15 @@ def realizar_venda(clientes, vendedores, produtos, vendas):
                 "quantidade": quantidade,
                 "valor_unitario": produtos[codigo_produto]["valor"],
             }
-
-        print("Produto adicionado ao carrinho.")
+        print("Adicionando produto ao carrinho", end="", flush=True)
+        for ponto in range(3):
+            sleep(0.5)
+            print(".", end="", flush=True)
+        sleep(0.5)
+        print("")
     if not carrinho:
         print("Venda não realizada: carrinho vazio.")
+        sleep(0.8)
         return
 
     itens_venda = []
@@ -116,8 +129,8 @@ def realizar_venda(clientes, vendedores, produtos, vendas):
     venda = {
         "numero": len(vendas) + 1,
         "data": datetime.now().strftime("%d/%m/%Y %H:%M"),
-        "vendedor": vendedores[codigo_vendedor]["Nome"],
-        "cliente": clientes[codigo_cliente]["Nome"],
+        "vendedor": vendedores[codigo_vendedor]["nome"],
+        "cliente": clientes[codigo_cliente]["nome"],
         "itens": itens_venda,
         "total": total_venda,
         "comissao": round(total_venda * 0.05, 2),

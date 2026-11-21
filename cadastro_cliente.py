@@ -1,6 +1,7 @@
 def cadastro_cliente():
       cliente = {}
       id = 1
+      
 
       while True:
             cadastro = input("Deseja Cadastrar o cliente? (s/n) ").strip().lower()
@@ -11,7 +12,7 @@ def cadastro_cliente():
                         data_nascimento = int(input("Informeo ano de nascimento: "))
                         idade = 2026 - data_nascimento
                         cpf = input("Informe o CPF do cliente: ")
-                        cliente[f"CL{id:03d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf}
+                        cliente[f"{id:03d}"] = {"nome": nome, "idade": idade, "CPF": cpf}
                         id += 1
 
                         while True:
@@ -30,14 +31,14 @@ def cadastro_cliente():
                   print("Não entendi, poderia me informar novamente ? ")
       return cliente
 
+      
 def mostrar_cliente(cliente):
       print("=" * 20)
       for id, dados in cliente.items():
-            print(f"Nome: {dados['Nome']}")
-            print(f"Idade: {dados['Idade']}")
+            print(f"nome: {dados['nome']}")
+            print(f"idade: {dados['idade']}")
             print(f"CPF: {dados['CPF']}")
-            print(f"ID: {id}")
-            print("=" * 20)
+            print(f"ID: CL{id}")
 if __name__ == "__main__":
       cliente = cadastro_cliente()
       mostrar_cliente(cliente)
