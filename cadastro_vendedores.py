@@ -29,7 +29,7 @@ def cadastro_de_vendedores():
                 if len(cpf) != 11 or not cpf.isdigit():
                     print("CPF inválido!")
                     continue
-                vendedores[f"VD{id:04d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf, "Endereço": endereco}
+                vendedores[f"{id:04d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf, "Endereço": endereco}
                 id += 1
 
                 while True:
@@ -55,7 +55,7 @@ def mostrar_vendedores(vendedores):
         print(f"Idade: {dados['Idade']}")
         print(f"Endereço: {dados['Endereço']}")
         print(f"CPF: {dados['CPF'][:3]}.{dados['CPF'][3:6]}.{dados['CPF'][6:9]}-{dados['CPF'][9:]}")
-        print(f"ID: {id}")
+        print(f"ID: VD{id}")
         print("=" * 20)
 if __name__ == "__main__":
     vendedores = cadastro_de_vendedores()

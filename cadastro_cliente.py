@@ -2,13 +2,14 @@ from datetime import datetime
 def cadastro_cliente():
       cliente = {}
       id = 1
+      
 
       while True:
             cadastro = input("Deseja Cadastrar o cliente? (s/n) ").strip().lower()
             if cadastro.strip().lower() in ("sim", "s"):
 
                   while True:
-                        nome = input("Informe o nome do cliente: ").capitalize()
+                        nome = input("Informe o nome do cliente: ").title().strip()
                         if len(nome) < 15:
                               print("Nome invalido por falta de caracteres, por favor coloque um nome maior ")
                               continue
@@ -30,7 +31,7 @@ def cadastro_cliente():
                         if len(cpf) != 11 or not cpf.isdigit():
                               print("CPF inválido!")
                               continue
-                        cliente[f"CL{id:04d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf, "Endereço": endereco }
+                        cliente[f"{id:04d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf, "Endereço": endereco }
                         id += 1
 
                         while True:
@@ -49,6 +50,7 @@ def cadastro_cliente():
                   print("Não entendi, poderia me informar novamente ? ")
       return cliente
 
+      
 def mostrar_cliente(cliente):
       print("=" * 20)
       for id, dados in cliente.items():
@@ -56,7 +58,7 @@ def mostrar_cliente(cliente):
             print(f"Idade: {dados['Idade']}")
             print(f"CPF: {dados['CPF'][:3]}.{dados['CPF'][3:6]}.{dados['CPF'][6:9]}-{dados['CPF'][9:]}")
             print(f"Endereço: {dados['Endereço']}")
-            print(f"ID: {id}")
+            print(f"ID: CL{id}")
             print("=" * 20)
 if __name__ == "__main__":
       cliente = cadastro_cliente()

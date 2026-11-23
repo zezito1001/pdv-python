@@ -40,7 +40,7 @@ def mostrar_produto(produto):
     print("<<<< PRODUTOS CADASTRADOS >>>>")
     print("=" * 20)
     for id, dados in produto.items():
-        print(f"id do Produto: {id}")
+        print(f"id do Produto: PR{id}")
         print(f"Nome: {dados['nome']}")
         print(f"Valor: R$ {dados['valor']:.2f}".replace(".", ","))
         print(f"Estoque: {dados['estoque']}")
