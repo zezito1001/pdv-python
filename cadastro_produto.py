@@ -6,17 +6,17 @@ def cadastro_produto():
             p = input("Deseja Cadastrar algum Produto (s/n)? " ).strip().lower()
             if p.strip().lower() in ("sim"):
                 while True:
-                    nome = input("Digite o nome do produto, que você deseja Adicionar: ").capitalize()
+                    nome = input("Digite o nome do produto, que você deseja Adicionar: ").title().strip()
                     valor = input("Digite o valor do produto: ")
                     valor = valor.replace(",", ".")
                     valor = float(valor)
                     estoque = int(input("Digite a quantidade que tem no estoque desse produto: " ))
-                    data_de_vencimento = input("Informe a data de validade do produto: ")
+                    data_de_vencimento = input("Informe a data de validade do produto no formato DD/MM/AAAA: ")
                     dia, mes, ano = data_de_vencimento.split("/")
                     dia = int(dia)
                     mes = int(mes)
                     ano = int(ano)
-                    produto[f"PR{id:04d}"] = {"nome": nome, "valor": valor, "estoque": estoque, "Vencimento": data_de_vencimento }
+                    produto[f"{id:04d}"] = {"nome": nome, "valor": valor, "estoque": estoque, "Vencimento": data_de_vencimento }
                     id += 1
 
                     while True: 

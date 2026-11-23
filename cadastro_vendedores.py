@@ -7,15 +7,14 @@ def cadastro_de_vendedores():
         adicionar_vendedor = input("Deseja cadastrar algum vendedor (s/n)? ").strip().lower()
         if adicionar_vendedor.strip().lower() in ("sim", "s", ):
             while True:
-                nome = input("Informe o nome do vendedor: ").capitalize()
-                if len(nome) < 15:
-                    print("Nome invalido por falta de caracteres, por favor Informe um nome maior !")
+                nome = input("Informe o nome do vendedor: ").title().strip()
+                if not " " in nome:
+                    print("Você deve fornecer nome e sobrenome para prosseguir")
                     continue
                 elif len(nome) > 30:
-                    print("Nome invalido por execesso de caracteres, por favor Informe um nome menor !")
+                    print("Nome invalido por execesso de caracteres, por favor informe apenas nome e sobrenome")
                     continue
-                endereco = input("Informe o endereço do vendedor: ")
-                data_nascimento = input("Informe a data de nascimento do vendedor: ")
+                data_nascimento = input("Informe a data de nascimento do cliente no formato DD/MM/AAAA: ")
                 dia, mes, ano = data_nascimento.split("/")
                 dia = int(dia)
                 mes = int(mes)
@@ -24,6 +23,7 @@ def cadastro_de_vendedores():
                 idade = hoje.year - ano
                 if (hoje.month, hoje.day) < (mes, dia):
                     idade -= 1
+                endereco = input("Informe o endereço do vendedor: ")
                 cpf = input("Informe o CPF do vendedor sem traços ou pontos : ")
                 cpf = cpf.replace(".", "").replace("-", "")
                 if len(cpf) != 11 or not cpf.isdigit():

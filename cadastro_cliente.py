@@ -10,13 +10,13 @@ def cadastro_cliente():
 
                   while True:
                         nome = input("Informe o nome do cliente: ").title().strip()
-                        if len(nome) < 15:
-                              print("Nome invalido por falta de caracteres, por favor coloque um nome maior ")
+                        if not " " in nome:
+                              print("Você deve fornecer nome e sobrenome para prosseguir")
                               continue
                         elif len(nome) > 30:
-                              print("Nome invalido por execesso de caracteres, por favor informe um nome menor ")
+                              print("nome invalido por execesso de caracteres, por favor informe apenas nome e sobrenome")
                               continue
-                        data_nascimento = input("Informe a data de nascimento do cliente: ")
+                        data_nascimento = input("Informe a data de nascimento do cliente no formato DD/MM/AAAA: ")
                         dia, mes, ano = data_nascimento.split("/")
                         dia = int(dia)
                         mes = int(mes)
@@ -31,7 +31,7 @@ def cadastro_cliente():
                         if len(cpf) != 11 or not cpf.isdigit():
                               print("CPF inválido!")
                               continue
-                        cliente[f"{id:04d}"] = {"Nome": nome, "Idade": idade, "CPF": cpf, "Endereço": endereco }
+                        cliente[f"{id:04d}"] = {"nome": nome, "idade": idade, "CPF": cpf, "Endereço": endereco }
                         id += 1
 
                         while True:
@@ -54,8 +54,8 @@ def cadastro_cliente():
 def mostrar_cliente(cliente):
       print("=" * 20)
       for id, dados in cliente.items():
-            print(f"Nome: {dados['Nome']}")
-            print(f"Idade: {dados['Idade']}")
+            print(f"nome: {dados['nome']}")
+            print(f"idade: {dados['idade']}")
             print(f"CPF: {dados['CPF'][:3]}.{dados['CPF'][3:6]}.{dados['CPF'][6:9]}-{dados['CPF'][9:]}")
             print(f"Endereço: {dados['Endereço']}")
             print(f"ID: CL{id}")
